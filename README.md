@@ -1,5 +1,6 @@
-Installation via ArgoCD Helm Chart
+## Kustomize Sed Transformer
 
+### Installation via ArgoCD Helm Chart
 ```
 repoServer:
   volumes:
@@ -33,4 +34,32 @@ repoServer:
           cp -r kustomize-sed-transformer-main/plugins/* $ARGO_CUSTOM_PLUGIN_HOME;
           chmod -R 777 $ARGO_CUSTOM_PLUGIN_HOME;
           ls -lart $ARGO_CUSTOM_PLUGIN_HOME;
+```
+
+### How to use
+```
+kind: Kustomization
+resources:
+  - deployment.yml
+  - service.yml
+
+helmCharts:
+  - name: yugabyte
+    includeCRDs: true
+    repo: https://charts.yugabyte.com
+    releaseName: yugabyte-db
+    version: 2.21.0
+    additionalValuesFiles:
+      - values-yugabyte.yaml
+...
+
+# Plugin Usage
+transformers:
+  - |-
+    apiVersion: argoproj.custom.plugins/v1
+    kind: SedTransformer
+    metadata:
+      name: sed-transformer-argocd-tools
+    argsOneLiner: s/argocd-tools/yugabyte-db/g
+
 ```
