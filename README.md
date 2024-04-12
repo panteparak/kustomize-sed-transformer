@@ -63,3 +63,6 @@ transformers:
     argsOneLiner: s/argocd-tools/yugabyte-db/g
 
 ```
+
+To Run Locally: `kustomize build --enable-helm --enable-alpha-plugins`.  
+Notice the `--enable-alpha-plugins` flag needs to be decalre
