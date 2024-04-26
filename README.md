@@ -22,7 +22,7 @@ repoServer:
         - name: ARGO_CUSTOM_PLUGIN_HOME
           value: /plugins
         - name: ARGO_CUSTOM_PLUGIN_URL
-          value: "https://github.com/panteparak/kustomize-sed-transformer/archive/refs/heads/main.tar.gz"
+          value: "https://github.com/panteparak/kustomize-sed-transformer/archive/refs/tags/1.0.0.tar.gz"
       command: [ "/bin/sh", "-c" ]
       securityContext:
         allowPrivilegeEscalation: false
